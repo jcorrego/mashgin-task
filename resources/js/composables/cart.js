@@ -2,7 +2,7 @@ import {computed, ref} from 'vue'
 
 export default function useCart() {
     const cart = ref({})
-    const cart_errors = ref({})
+    const cart_errors = ref()
     const cart_order = ref()
 
     const addItem = (item) => {
@@ -48,6 +48,7 @@ export default function useCart() {
         try {
             let response = await axios.post('/api/orders', data)
             cart_order.value = response.data.data
+            cart_errors.value = null
         } catch (e) {
             if (e.response.status === 422) {
                 cart_errors.value = e.response.data.errors

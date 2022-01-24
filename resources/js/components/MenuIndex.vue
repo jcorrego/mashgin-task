@@ -53,7 +53,7 @@
                 </section>
                 <section v-if="checkout" aria-labelledby="payment-and-summary" class="py-16 lg:max-w-lg lg:w-full lg:mx-auto lg:pt-0 lg:pb-24 lg:row-start-1 lg:col-start-1 lg:col-span-2">
                     <form @submit.prevent="pay">
-                        <div v-if="Object.keys(cart_errors).length" class="rounded-md bg-red-50 p-4">
+                        <div v-if="cart_errors" class="rounded-md bg-red-50 p-4">
                             <div class="flex">
 
                                 <div class="ml-3">
@@ -78,8 +78,8 @@
                                     <div class="mt-1">
                                         <input v-model="form.email" type="email" id="email-address" name="email-address" autocomplete="email"
                                                class="block w-full rounded-md shadow-sm  sm:text-sm"
-                                                :class="cart_errors.email ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'" />
-                                        <p v-if="cart_errors.email" class="mt-2 text-sm text-red-600" id="email-error">{{ cart_errors.email[0] }}</p>
+                                                :class="cart_errors && cart_errors.email ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'" />
+                                        <p v-if="cart_errors && cart_errors.email" class="mt-2 text-sm text-red-600" id="email-error">{{ cart_errors.email[0] }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -93,8 +93,8 @@
                                         <div class="mt-1">
                                             <input v-model="form.cc_number" type="text" id="card-number" name="card-number" autocomplete="cc-number"
                                                    class="block w-full rounded-md shadow-sm sm:text-sm"
-                                                   :class="cart_errors.cc_number ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'" />
-                                            <p v-if="cart_errors.cc_number" class="mt-2 text-sm text-red-600" id="card-number-error">{{ cart_errors.cc_number[0] }}</p>
+                                                   :class="cart_errors && cart_errors.cc_number ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'" />
+                                            <p v-if="cart_errors && cart_errors.cc_number" class="mt-2 text-sm text-red-600" id="card-number-error">{{ cart_errors.cc_number[0] }}</p>
                                         </div>
                                     </div>
 
@@ -103,8 +103,8 @@
                                         <div class="mt-1">
                                             <input v-model="form.cc_date" type="text" name="expiration-date" id="expiration-date" autocomplete="cc-exp"
                                                    class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                   :class="cart_errors.cc_date ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'"/>
-                                            <p v-if="cart_errors.cc_date" class="mt-2 text-sm text-red-600" id="expiration-date-error">{{ cart_errors.cc_date[0] }}</p>
+                                                   :class="cart_errors && cart_errors.cc_date ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'"/>
+                                            <p v-if="cart_errors && cart_errors.cc_date" class="mt-2 text-sm text-red-600" id="expiration-date-error">{{ cart_errors.cc_date[0] }}</p>
                                         </div>
                                     </div>
 
@@ -113,8 +113,8 @@
                                         <div class="mt-1">
                                             <input v-model="form.cc_cvc" type="text" name="cvc" id="cvc" autocomplete="csc"
                                                    class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                   :class="cart_errors.cc_cvc ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'" />
-                                            <p v-if="cart_errors.cc_cvc" class="mt-2 text-sm text-red-600" id="cvc-error">{{ cart_errors.cc_cvc[0] }}</p>
+                                                   :class="cart_errors && cart_errors.cc_cvc ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'" />
+                                            <p v-if="cart_errors && cart_errors.cc_cvc" class="mt-2 text-sm text-red-600" id="cvc-error">{{ cart_errors.cc_cvc[0] }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -129,8 +129,8 @@
                                         <div class="mt-1">
                                             <input v-model="form.address" type="text" id="address" name="address" autocomplete="street-address"
                                                    class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                   :class="cart_errors.address ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'" />
-                                            <p v-if="cart_errors.address" class="mt-2 text-sm text-red-600" id="address-error">{{ cart_errors.address[0] }}</p>
+                                                   :class="cart_errors && cart_errors.address ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'" />
+                                            <p v-if="cart_errors && cart_errors.address" class="mt-2 text-sm text-red-600" id="address-error">{{ cart_errors.address[0] }}</p>
                                         </div>
                                     </div>
 
@@ -139,8 +139,8 @@
                                         <div class="mt-1">
                                             <input v-model="form.city" type="text" id="city" name="city" autocomplete="address-level2"
                                                    class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                   :class="cart_errors.city ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'" />
-                                            <p v-if="cart_errors.city" class="mt-2 text-sm text-red-600" id="city-error">{{ cart_errors.city[0] }}</p>
+                                                   :class="cart_errors && cart_errors.city ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'" />
+                                            <p v-if="cart_errors && cart_errors.city" class="mt-2 text-sm text-red-600" id="city-error">{{ cart_errors.city[0] }}</p>
                                         </div>
                                     </div>
 
@@ -149,8 +149,8 @@
                                         <div class="mt-1">
                                             <input v-model="form.state" type="text" id="region" name="region" autocomplete="address-level1"
                                                    class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                   :class="cart_errors.state ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'" />
-                                            <p v-if="cart_errors.state" class="mt-2 text-sm text-red-600" id="state-error">{{ cart_errors.state[0] }}</p>
+                                                   :class="cart_errors && cart_errors.state ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'" />
+                                            <p v-if="cart_errors && cart_errors.state" class="mt-2 text-sm text-red-600" id="state-error">{{ cart_errors.state[0] }}</p>
                                         </div>
                                     </div>
 
@@ -159,8 +159,8 @@
                                         <div class="mt-1">
                                             <input v-model="form.postal" type="text" id="postal-code" name="postal-code" autocomplete="postal-code"
                                                    class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                   :class="cart_errors.postal ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'" />
-                                            <p v-if="cart_errors.postal" class="mt-2 text-sm text-red-600" id="postal-error">{{ cart_errors.postal[0] }}</p>
+                                                   :class="cart_errors && cart_errors.postal ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'" />
+                                            <p v-if="cart_errors && cart_errors.postal" class="mt-2 text-sm text-red-600" id="postal-error">{{ cart_errors.postal[0] }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -300,7 +300,7 @@ const pay = async () => {
         cart: cart.value,
         ...form
     })
-    if (cart_order) checkout.value = false
+    if (!cart_errors.value && cart_order.value) checkout.value = false
 }
 const newOrder = () => {
     cart.value = {}
