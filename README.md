@@ -1,4 +1,5 @@
 ## Mashgin Developer Task
+![Screen Shot 2022-01-24 at 2 50 08 AM](https://user-images.githubusercontent.com/2152949/150742465-b0d12fb5-921b-4867-a6bf-fd690501bf6e.png)
 
 This a test project to solve a developer task.
 
