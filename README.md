@@ -4,7 +4,7 @@
 This a test project to solve a developer task.
 
 ## Backend
-For the backend, we created (according to Laravel Framework standards):
+For the backend, i created (according to Laravel Framework standards):
 - migrations, to create database tables.
 - seeders and factories, to load initial data.
 - models
@@ -19,7 +19,7 @@ Some sample routes that can be tested at any time, without any security.
 - `/api/menu`
 
 ## Frontend
-For the frontend we are using Vue3 with composition Api, and Tailwindcss 
+For the frontend i am using Vue3 with composition Api, and Tailwindcss 
 for styling. 
 - Just one route needed
 - Just one component created
