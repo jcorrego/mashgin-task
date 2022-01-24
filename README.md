@@ -27,13 +27,39 @@ for styling.
 - Responsive design is fully functional
 
 ## Installation
-Docker compose is used to create containers for mysql and for the web app.
+- Clone this repo into a local folder
+- Copy file `.env.example` to `.env`  
+- cd into the folder
+- Install composer dependencies, using `composer install` 
+or if you dont have composer installed, you can use this command to use 
+a simple container to run the command.
+```
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v $(pwd):/var/www/html \
+    -w /var/www/html \
+    laravelsail/php81-composer:latest \
+    composer install --ignore-platform-reqs
+```
 
-Make sure you have no other containers running using ports `80` and `3306`
+Docker compose is used to create containers for mysql and for the web app.
+Make sure you have no other containers running using ports `80` and `3306` and run:
 ```
 docker-compose build
 docker-compose up
 ```
+
+To create the initial data in the database, once the containers are running,
+you can run this command replacing `mashgin_laravel_1` with the correct container 
+name from your machine.
+```
+docker exec mashgin_laravel_1 php artisan migrate:fresh --seed
+```
+Or, you can login into the container and run
+```
+php artisan migrate:fresh --seed
+```
+
 Then browse to `http://localhost`
 
 ### Commands
