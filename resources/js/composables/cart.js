@@ -22,6 +22,7 @@ export default function useCart() {
             if (cart.value[item.id].quantity === 0) delete cart.value[item.id]
         }
     }
+
     const cart_subtotal = computed(() => {
         let total = 0
         for (const key in cart.value) {
