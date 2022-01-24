@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/{any}', 'menu')
+    ->where('any', '.*');
+
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/menu', function () {
+    return view('menu');
+})->name('menu');
+
+//require __DIR__.'/auth.php';
