@@ -17,6 +17,7 @@ Some sample routes that can be tested at any time, without any security.
 - `/api/categories`
 - `/api/items`
 - `/api/menu`
+- `/api/orders`
 
 ## Frontend
 For the frontend i am using Vue3 with composition Api, and Tailwindcss 
