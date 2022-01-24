@@ -204,7 +204,7 @@
                     </div>
                 </form>
             </section>
-            <section v-else-if="cart_order" aria-labelledby="payment-and-summary" class="py-16 lg:w-full lg:mx-auto lg:pt-0 lg:pb-24 lg:row-start-1 lg:col-start-1 lg:col-span-2">
+            <section v-else-if="cart_order" aria-labelledby="confirmation" class="py-16 lg:w-full lg:mx-auto lg:pt-0 lg:pb-24 lg:row-start-1 lg:col-start-1 lg:col-span-2">
                 <div class="max-w-2xl mx-auto py-16 px-4 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 lg:py-32">
                     <div class="">
                         <h1 class="text-sm font-medium text-indigo-600">Payment successful</h1>
@@ -226,8 +226,10 @@
                     </div>
                 </div>
             </section>
-            <section v-else aria-labelledby="payment-and-summary" class="py-16 lg:w-full lg:mx-auto lg:pt-0 lg:pb-24 lg:row-start-1 lg:col-start-1 lg:col-span-2">
+            <section v-else aria-labelledby="categories-and-products" class="py-16 lg:w-full lg:mx-auto lg:pt-0 lg:pb-24 lg:row-start-1 lg:col-start-1 lg:col-span-2">
                 <div>
+                    <hr class="my-4">
+                    <h2 class="mb-4">Select a category</h2>
                     <div class="grid grid-cols-3 gap-x-2 sm:grid-cols-4 sm:gap-x-6">
                         <div v-for="(category, index) in menu" :key="category.id"
                              class="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:relative  sm:aspect-w-1"
@@ -253,12 +255,15 @@
                         </div>
                     </div>
                     <div v-if="selectedCategory >= 0" class="py-6">
+                        <hr class="my-4">
+                        <h2 class="mb-4">Products in the <strong>{{ menu[selectedCategory].name }}</strong> category</h2>
+
                         <div class="grid grid-cols-3 gap-y-10 gap-x-2 sm:grid-cols-4 sm:gap-x-6">
                             <div v-for="item in menu[selectedCategory].items" :key="item.id"
                                  class="group cursor-pointer">
                                 <div
                                     class="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-                                    <img :src="item.image" :alt="item.name"
+                                    <img @click="addItem(item)" :src="item.image" :alt="item.name"
                                          class="w-full h-full object-center object-cover group-hover:opacity-75"/>
                                 </div>
                                 <div class="mt-4 mb-2 flex items-center justify-between">
